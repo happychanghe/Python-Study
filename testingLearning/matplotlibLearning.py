@@ -11,21 +11,22 @@ import numpy as np
 #ax.yaxis.set_minor_locator(0.5)
 #ax.yaxis.set_major_locator(1)
 
-np.random.seed(19680801)  # seed the random number generator.
-data = {'a': np.arange(50),
-        'c': np.random.randint(0, 50, 50),
-        'd': np.random.randn(50)}
-data['b'] = data['a'] + 10 * np.random.randn(50)
-data['d'] = np.abs(data['d']) * 100
+# np.random.seed(19680801)  # seed the random number generator.
+# data = {'a': np.arange(50),
+#         'c': np.random.randint(0, 50, 50),
+#         'd': np.random.randn(50)}
+# data['b'] = data['a'] + 10 * np.random.randn(50)
+# data['d'] = np.abs(data['d']) * 100
 
-fig, ax = plt.subplots(figsize=(5, 2.7), layout='constrained')
-ax.scatter('a', 'b', c='c', s='d', data=data)
-ax.set_xlabel('entry a')
-ax.set_ylabel('entry b')
+# fig, ax = plt.subplots(figsize=(5, 2.7), layout='constrained')
+# ax.scatter('a', 'b', c='c', s='d', data=data)
+# ax.set_xlabel('entry a')
+# ax.set_ylabel('entry b')
 #rng = np.random.default_rng()
 #rng.integers
 #np.cumsum()
 
+fig, ax = plt.subplots(2, 1  )
 
 
 
