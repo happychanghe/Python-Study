@@ -42,9 +42,10 @@ l1 = axes.plot(x, y1, label='sin')
 # l2; l3; l4; l5
 # for n in range(towhatn):
 #     axes.plot(x, yn[n], label=f'order of {n}')
-axes.plot(x, nthpolynomial(10, k, x, a), label=f'order of {10}')
-axes.plot(x, nthpolynomial(30, k, x, a), label=f'order of {30}')
-axes.legend()
+for i in range(20):
+    c = 1-i/20
+    axes.plot(x, nthpolynomial(i, k, x, a), label=f'order of {i}', color=(c, c, c))
+# axes.legend()
 plt.show()
 
 # TODO: animation 
