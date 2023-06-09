@@ -28,9 +28,7 @@ def beta_pdf(x, a, n):
 
 
 class UpdateDist:
-    def __init__(self, ax, prob=0.5):
-        self.success = 0
-        self.prob = prob
+    def __init__(self, ax):
         self.line, = ax.plot([], [], 'k-')
         self.x = np.linspace(-3*np.pi, 3*np.pi, 200)
         self.ax = ax
@@ -40,9 +38,6 @@ class UpdateDist:
         self.ax.set_ylim(-1.5, 1.5)
         self.ax.grid(True)
 
-        # This vertical line represents the theoretical value, to
-        # which the plotted distribution should converge.
-        # self.ax.axvline(prob, linestyle='--', color='black')
 
     def __call__(self, i):
         # This way the plot can continuously run and we just keep
@@ -52,15 +47,10 @@ class UpdateDist:
             self.line.set_data([], [])
             return self.line,
 
-        # Choose success based on exceed a threshold with a uniform pick
-        if np.random.rand() < self.prob:
-            self.success += 1
         y = beta_pdf(self.x, i/10, 15)
         self.line.set_data(self.x, y)
         return self.line,
 
-# Fixing random state for reproducibility
-np.random.seed(19680801)
 
 
 fig, ax = plt.subplots()
