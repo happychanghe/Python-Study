@@ -25,11 +25,11 @@ def nthpolynomial(n: int, k: float, x: np.ndarray, a: float):
     return _yn
     
 
+a = 0                   # taylor series from x = a
 _n = 5                 # x domain
-x = np.arange(-_n*np.pi, _n*np.pi, 0.1)
+x = np.arange(-_n*np.pi+a, _n*np.pi+a, 0.1)
 k = 1                   # y scale
 y1 = k*np.sin(x)        # sin 
-a = 0                   # taylor series from x = a
 # yn = []
 # towhatn = 20
 # for n in range(0, towhatn):
@@ -38,12 +38,13 @@ a = 0                   # taylor series from x = a
 
 fig, axes = plt.subplots(1, 1)
 axes.set_ylim(-2*k, 2*k)
+axes.set_xlim(-_n*np.pi + a, _n*np.pi + a)
 l1 = axes.plot(x, y1, label='sin')
 # l2; l3; l4; l5
 # for n in range(towhatn):
 #     axes.plot(x, yn[n], label=f'order of {n}')
-for i in range(20):
-    c = 1-i/20
+for i in range(4):
+    c = 1-i/4
     axes.plot(x, nthpolynomial(i, k, x, a), label=f'order of {i}', color=(c, c, c))
 # axes.legend()
 plt.show()
