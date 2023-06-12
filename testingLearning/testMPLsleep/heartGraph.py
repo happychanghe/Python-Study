@@ -26,7 +26,7 @@ def convert_tag2dict(tag, dictkeys):
 dataformat=["creationDate", "value"]
 mydata=[]
 
-path = "testingLearning/testMPLsleep/heartdata.txt"
+path = "data/heartdata.txt"
 with open(path, "r") as heartinfo:
     lines = heartinfo.readlines()
     for aline in lines:
