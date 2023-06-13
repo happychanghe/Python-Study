@@ -1,36 +1,31 @@
-# import asyncio
-# import socket
- 
-# # 통신 정보 설정
-# IP = '192.168.0.12'
-# PORT = 5050
-# SIZE = 1024
-# ADDR = (IP, PORT)
+import asyncio
+import time
 
-# async def 
+async def say_after(delay, what):
+    await asyncio.sleep(delay)
+    print(what)
 
-# # 서버 소켓 설정
-# async def serverrr():
-#     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
-#         server_socket.bind(ADDR)  # 주소 바인딩
-#         server_socket.listen()  # 클라이언트의 요청을 받을 준비
+async def main():
+    print(f"started at {time.strftime('%X')}")
 
-#         # 무한루프 진입
-#         while True:
-#             client_socket, client_addr = server_socket.accept()  # 수신대기, 접속한 클라이언트 정보 (소켓, 주소) 반환       ### 기다림
-#             # print('1', client_socket, client_addr)
-#             msg = client_socket.recv(SIZE)  # 클라이언트가 보낸 메시지 반환
-#             print("[{}] message : {}".format(client_addr,msg.decode()))  # 클라이언트가 보낸 메시지 출력
+    await say_after(1, 'hello')
+    await say_after(2, 'world')
 
-#             response = input('response: ')
-#             client_socket.sendall(response.encode())  # 클라이언트에게 응답
-#             if "ONO" in response:
-#                 client_socket.sendall('### Server closed.'.encode())
-#                 client_socket.close()
-#                 break
+    print(f"finished at {time.strftime('%X')}")
 
-#             client_socket.close()  # 클라이언트 소켓 종료
- 
-# loop = asyncio.get_event_loop()             # 이벤트 루프를 얻음
-# loop.run_until_complete()    # print_add가 끝날 때까지 이벤트 루프를 실행
-# loop.close()
+async def _main():
+    task1 = asyncio.create_task(
+        say_after(1, 'hello'))
+
+    task2 = asyncio.create_task(
+        say_after(2, 'world'))
+
+    print(f"started at {time.strftime('%X')}")
+
+    # Wait until both tasks are completed (should take
+    # around 2 seconds.)
+    await task1
+    await task2
+
+    print(f"finished at {time.strftime('%X')}")
+asyncio.run(_main())
